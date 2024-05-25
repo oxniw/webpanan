@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Game</title>
+    <style>
+        body {
+            background-color: cornflowerblue;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function choose() {
+            return Math.floor(Math.random() * 2);
+        }
+
+        function bias() {
+            return Math.floor(Math.random() * 11);
+        }
+
+        function bias2() {
+            return Math.floor(Math.random() * 11);
+        }
+
+        function playGame() {
+            try {
+                let player = parseInt(prompt("Enter the number of iterations: "));
+                if (isNaN(player)) {
+                    throw new Error("ValueError");
+                }
+                let money = player * 2;
+                let count = 0;
+
+                for (let i = 0; i < player; i++) {
+                    let bias_value = bias();
+                    let bias2_value = bias2();
+                    if (bias_value > bias2_value) {
+                        count++;
+                        money -= 3;
+                    }
+                }
+
+                let pe = 100 * (count / player);
+                alert(`WIN PERCENT = ${pe.toFixed(2)}%`);
+                alert(`Money ที่ได้: ${money}`);
+
+                let playAgain = confirm("Do you want to play again?");
+                if (playAgain) {
+                    playGame();
+                }
+            } catch (error) {
+            }
+        }
+
+        alert("จำลองว่าเราคือผู้สร้างเว็บพนัน 1.ใส่จำนวนผู้เล่น 2.ผู้เล่นเล่นด้วยเงินคนละ2บาท 3.บอกpercent ที่ผู้เล่นชนะ 4.ถ้าผู้เล่นเล่นชนะเราเสียเงิน3บาท 5.บอกจำนวนเงินที่เราได้");
+        playGame();
+    </script>
+    <div id="result">
+        จำลองว่าเราคือผู้สร้างเว็บพนัน 
+        1.ใส่จำนวนผู้เล่น 
+        2.ผู้เล่นเล่นด้วยเงินคนละ2บาท 
+        3.บอกpercent ที่ผู้เล่นชนะ 
+        4.ถ้าผู้เล่นเล่นชนะเราเสียเงิน3บาท 
+        5.บอกจำนวนเงินที่เราได้
+    </div>
+</body>
+</html>
